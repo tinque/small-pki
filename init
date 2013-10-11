@@ -1,0 +1,14 @@
+#!/bin/bash
+mkdir -p db/ca.db.certs
+
+# Création de l'infrastructure
+mkdir config
+mkdir certificats
+
+
+
+# Initialisation des numéros de séries à 1
+echo '01'> db/ca.db.serial
+# Initialisation de l'index des certificats
+cp /dev/null db/ca.db.index
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+## Génération de la clef
+openssl genrsa -des3 -out certificats/ca.key 2048
+
+## Signature de la clef
+openssl req -utf8 -new -x509 -days 3000 -key certificats/ca.key -out certificats/ca.crt
+
+
+## Génération du DER pour les utilisateurs
+openssl x509 -in certificats/ca.crt -outform DER -out certificats/ca.der
