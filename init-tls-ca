@@ -7,7 +7,7 @@ openssl req -new -config $DIR/etc/ca/tlsCA.cnf -out $DIR/ca/tls-ca.csr -keyout $
 
 
 ## Create CA certificate
-openssl ca -selfsign  -config $DIR/etc/ca/tlsCA.cnf -in $DIR/ca/tls-ca.csr -out $DIR/ca/tls-ca.crt -extensions server_ext # -enddate 310101000000Z
+openssl ca -config $DIR/etc/ca/CA.cnf -in $DIR/ca/tls-ca.csr -out $DIR/ca/tls-ca.crt -extensions signing_ca_ext
 
 ## Create initial CRL
 openssl ca -gencrl -config $DIR/etc/ca/tlsCA.cnf -out $DIR/crl/tls-ca.crl

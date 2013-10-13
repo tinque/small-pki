@@ -7,7 +7,7 @@ openssl req -new -config $DIR/etc/ca/emailCA.cnf  -out $DIR/ca/email-ca.csr -key
 
 
 ## Create CA certificate
-openssl ca -selfsign  -config $DIR/etc/ca/emailCA.cnf -in $DIR/ca/email-ca.csr -out $DIR/ca/email-ca.crt -extensions email_ext # -enddate 310101000000Z
+openssl ca -config $DIR/etc/ca/CA.cnf -in $DIR/ca/email-ca.csr -out $DIR/ca/email-ca.crt -extensions signing_ca_ext
 
 ## Create initial CRL
 openssl ca -gencrl -config $DIR/etc/ca/emailCA.cnf -out $DIR/crl/email-ca.crl
