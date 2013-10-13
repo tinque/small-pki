@@ -1,14 +1,45 @@
 #!/bin/bash
-mkdir -p db/ca.db.certs
-
-# Création de l'infrastructure
-mkdir config
-mkdir certificats
+source etc/vars
 
 
+## Init for Root CA
+mkdir -p $DIR/ca/root-ca/private $DIR/ca/root-ca/db $DIR/crl $DIR/certs
+chmod 700 $DIR/ca/root-ca/private
 
-# Initialisation des numéros de séries à 1
-echo '01'> db/ca.db.serial
-# Initialisation de l'index des certificats
-cp /dev/null db/ca.db.index
+cp /dev/null $DIR/ca/root-ca/db/root-ca.db
+cp /dev/null $DIR/ca/root-ca/db/root-ca.db.attr
+echo 01 > $DIR/ca/root-ca/db/root-ca.crt.srl
+echo 01 > $DIR/ca/root-ca/db/root-ca.crl.srl
 
+
+## Init for Email CA
+
+mkdir -p $DIR/ca/email-ca/private $DIR/ca/email-ca/db $DIR/crl $DIR/certs/email/private
+chmod 700 $DIR/ca/email-ca/private $DIR/certs/email/private
+
+cp /dev/null $DIR/ca/email-ca/db/email-ca.db
+cp /dev/null $DIR/ca/email-ca/db/email-ca.db.attr
+echo 01 > $DIR/ca/email-ca/db/email-ca.crt.srl
+echo 01 > $DIR/ca/email-ca/db/email-ca.crl.srl
+
+
+## Init for TLS CA
+
+mkdir -p $DIR/ca/tls-ca/private ca/tls-ca/db $DIR/crl $DIR/certs/tls/private
+chmod 700 $DIR/ca/tls-ca/private $DIR/certs/tls/private
+
+cp /dev/null $DIR/ca/tls-ca/db/tls-ca.db
+cp /dev/null $DIR/ca/tls-ca/db/tls-ca.db.attr
+echo 01 > $DIR/ca/tls-ca/db/tls-ca.crt.srl
+echo 01 > $DIR/ca/tls-ca/db/tls-ca.crl.srl
+
+## Init software CA
+
+
+mkdir -p $DIR/ca/software-ca/private $DIR/ca/software-ca/db $DIR/crl $DIR/certs/software/private
+chmod 700 $DIR/ca/software-ca/private $DIR/certs/software/private
+
+cp /dev/null $DIR/ca/software-ca/db/software-ca.db
+cp /dev/null $DIR/ca/software-ca/db/software-ca.db.attr
+echo 01 > $DIR/ca/software-ca/db/software-ca.crt.srl
+echo 01 > $DIR/ca/software-ca/db/software-ca.crl.srl
