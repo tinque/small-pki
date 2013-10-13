@@ -1,0 +1,13 @@
+#!/bin/bash
+source etc/vars
+
+
+## Create CA Request 
+openssl req -new -config $DIR/etc/ca/CA.cnf -out $DIR/ca/root-ca.csr -keyout $DIR/ca/root-ca/private/root-ca.key
+
+
+## Create CA certificate
+openssl ca -selfsign  -config $DIR/etc/ca/CA.cnf -in $DIR/ca/root-ca.csr -out $DIR/ca/root-ca.crt -extensions root_ca_ext # -enddate 310101000000Z
+
+## Create initial CRL
+openssl ca -gencrl -config $DIR/etc/ca/CA.cnf -out $DIR/crl/root-ca.crl

@@ -1,0 +1,80 @@
+#!/bin/bash
+
+##### Global parameters
+
+#Directory
+export DIR="/data/pki"
+
+#Expose URL (whithout / at the end)
+export BASE_URL="https://pki.tinque.fr"
+
+#Country Name
+export COUNTRY="FR"
+
+#organizationName
+export ORGANIZATION_NAME="Tinque"
+
+
+
+###### Root CA Parameters
+
+#organizationalUnitName
+export CA_ORGANIZATIONAL="Tinque Certificate Authority"
+
+#commonName
+export CA_NAME="Tinque Root CA"
+
+#default_days : How long to certify for
+export CA_DAYS="3652"
+
+#default_crl_days : How long before next CRL
+export CA_CRL_DAYS="365"
+
+
+###### Email CA Parameters
+
+#organizationalUnitName
+export EMAIL_CA_ORGANIZATIONAL="Tinque Certificate Authority"
+
+#commonName
+export EMAIL_CA_NAME="Tinque Email CA"
+
+#default_days : How long to certify for
+export EMAIL_CA_DAYS="730"
+
+#default_crl_days : How long before next CRL
+export EMAIL_CA_CRL_DAYS="1"
+
+
+
+###### TLS CA Parameters
+
+#organizationalUnitName
+export TLS_CA_ORGANIZATIONAL="Tinque Certificate Authority"
+
+#commonName
+export TLS_CA_NAME="Tinque TLS CA"
+
+#default_days : How long to certify for
+export TLS_CA_DAYS="730"
+
+#default_crl_days : How long before next CRL
+export TLS_CA_CRL_DAYS="1"
+
+
+
+###### Software CA Parameters
+
+#organizationalUnitName
+export SOFTWARE_CA_ORGANIZATIONAL="Tinque Certificate Authority"
+
+#commonName
+export SOFTWARE_CA_NAME="Tinque Software CA"
+
+#default_days : How long to certify for
+export SOFTWARE_CA_DAYS="1826"
+
+#default_crl_days : How long before next CRL
+export SOFTWARE_CA_CRL_DAYS="30"
+
+

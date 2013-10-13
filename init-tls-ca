@@ -1,0 +1,16 @@
+#!/bin/bash
+source etc/vars
+
+
+## Create CA Request 
+openssl req -new -config $DIR/etc/ca/tlsCA.cnf -out $DIR/ca/tls-ca.csr -keyout $DIR/ca/tls-ca/private/tls-ca.key
+
+
+## Create CA certificate
+openssl ca -selfsign  -config $DIR/etc/ca/tlsCA.cnf -in $DIR/ca/tls-ca.csr -out $DIR/ca/tls-ca.crt -extensions server_ext # -enddate 310101000000Z
+
+## Create initial CRL
+openssl ca -gencrl -config $DIR/etc/ca/tlsCA.cnf -out $DIR/crl/tls-ca.crl
+
+##Create Bundle
+cat $DIR/ca/tls-ca.crt $DIR/ca/root-ca.crt > $DIR/ca/tls-ca-chain.pem

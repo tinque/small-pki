@@ -1,0 +1,16 @@
+#!/bin/bash
+source etc/vars
+
+
+## Create CA Request 
+openssl req -new -config $DIR/etc/ca/softwareCA.cnf -out $DIR/ca/software-ca.csr -keyout $DIR/ca/software-ca/private/software-ca.key
+
+
+## Create CA certificate
+openssl ca -selfsign  -config $DIR/etc/ca/softwareCA.cnf -in $DIR/ca/software-ca.csr -out $DIR/ca/software-ca.crt -extensions codesign_ext # -enddate 310101000000Z
+
+## Create initial CRL
+openssl ca -gencrl -config $DIR/etc/ca/softwareCA.cnf -out $DIR/crl/software-ca.crl
+
+##Create Bundle
+cat $DIR/ca/software-ca.crt $DIR/ca/software-ca.crt > $DIR/ca/software-ca-chain.pem

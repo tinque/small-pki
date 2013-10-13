@@ -1,0 +1,11 @@
+#!/bin/bash
+source etc/vars
+
+if [ $# -eq 0  ]
+then
+	echo "Usage: sign-tls-server-req [name]"
+	exit;
+fi
+
+#Create tls server certificate
+openssl ca -config $DIR/etc/ca/tlsCA.cnf -in $DIR/certs/tls/$1.csr -out certs/tls/$1.crt -extensions server_ext

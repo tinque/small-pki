@@ -1,0 +1,11 @@
+#!/bin/bash
+source etc/vars
+
+if [ $# -eq 0  ]
+then
+	echo "Usage: export-email-pkcs12 [name]"
+	exit;
+fi
+
+# Create email request
+openssl pkcs12 -export -name $1 -caname $EMAIL_CA_NAME -caname $CA_NAME -inkey $DIR/certs/email/private/$1.key -in $DIR/certs/email/$1.crt -certfile $DIR/ca/email-ca-chain.pem -out $DIR/certs/email/$1.p12

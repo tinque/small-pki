@@ -1,0 +1,16 @@
+#!/bin/bash
+source etc/vars
+
+
+## Create CA Request 
+openssl req -new -config $DIR/etc/ca/emailCA.cnf  -out $DIR/ca/email-ca.csr -keyout $DIR/ca/email-ca/private/email-ca.key
+
+
+## Create CA certificate
+openssl ca -selfsign  -config $DIR/etc/ca/emailCA.cnf -in $DIR/ca/email-ca.csr -out $DIR/ca/email-ca.crt -extensions email_ext # -enddate 310101000000Z
+
+## Create initial CRL
+openssl ca -gencrl -config $DIR/etc/ca/emailCA.cnf -out $DIR/crl/email-ca.crl
+
+## Create PEM bundle
+cat $DIR/ca/email-ca.crt $DIR/ca/root-ca.crt > $DIR/ca/email-ca-chain.pem

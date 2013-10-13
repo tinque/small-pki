@@ -1,0 +1,11 @@
+#!/bin/bash
+source etc/vars
+
+if [ $# -eq 0  ]
+then
+	echo "Usage: gen-email-req [name]"
+	exit;
+fi
+
+# Create email request
+openssl req -new -config $DIR/etc/csr/emailCSR.cnf -out $DIR/certs/email/$1.csr -keyout $DIR/certs/email/private/$1.key

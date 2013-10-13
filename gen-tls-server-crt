@@ -1,0 +1,14 @@
+#!/bin/bash
+source etc/vars
+
+if [ $# -eq 0  ]
+then
+	echo "Usage: gen-tls-server-crt [name]"
+	exit;
+fi
+read -p "Input SAN (prefix by DNS: and separate by coma) For example : DNS:tinque.fr,DNS:www.tinque.fr : " SAN
+
+export SAN
+
+#Create server request
+openssl req -new -config etc/csr/tlsServerCSR.cnf -out certs/tls/$1.csr -keyout certs/tls/private/$1.key
