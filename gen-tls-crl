@@ -1,0 +1,6 @@
+#!/bin/bash
+source etc/vars
+
+
+#Create CRL
+openssl ca -gencrl -config $DIR/etc/ca/tlsCA.cnf -out $DIR/crl/tls-ca.crl

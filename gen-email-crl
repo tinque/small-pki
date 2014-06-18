@@ -3,4 +3,4 @@ source etc/vars
 
 
 #Create CRL
-openssl ca -gencrl -config $DIR/etc/ca/emailCA.conf -out $DIR/crl/email-ca.crl
+openssl ca -gencrl -config $DIR/etc/ca/emailCA.cnf -out $DIR/crl/email-ca.crl
